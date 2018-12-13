@@ -16,10 +16,10 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="description" content="Standard Length Subsampling Interface for Coral Reef Fish Color Patterns">
+		<meta name="description" content="Background Removal Clipping Mask Interface for Coral Reef Fish Color Patterns">
 		<meta name="author" content="Shawn Tyler Schwartz">
 
-		<title>Fish Subsampling Interface</title>
+		<title>Fish BG Removal Interface</title>
 
 		<!-- Bootstrap Core CSS CDN -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
