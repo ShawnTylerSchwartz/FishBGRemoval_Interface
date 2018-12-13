@@ -211,6 +211,8 @@ $(document).ready(function() {
         <i class="fas fa-check"></i> Fish clipping without background successfully executed. 
         <br />
         <strong>If not satisified with output</strong>, please click <strong><i class="fas fa-undo"></i> Try Again</strong>.
+        <p></p>
+        <button type="button" class="btn btn-dark" onClick="window.location.assign('fish_list.php?<?php echo SID; ?>')">Ready? Next Fish <i class="fas fa-forward"></i></button>
     </div>
 
     <div class="row justify-content-md-center">
@@ -230,7 +232,6 @@ $(document).ready(function() {
             </button>
         </div>
     </div>
-
 
 	<p></p>
 	<div id="cropButton"></div>
