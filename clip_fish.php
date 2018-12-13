@@ -9,7 +9,7 @@
 
 <script>
 /*
- * Adapted by Shawn Tyler Schwartz from original author: netplayer@gmx.com on Github
+ * Adapted by Shawn Tyler Schwartz from netplayer on Github
  */
 
 $(document).ready(function() {
@@ -184,78 +184,41 @@ $(document).ready(function() {
 });
 
 </script>
-	<div class="alert alert-warning" role="alert">
-		Currently removing the background for <strong><?php echo $current_image; ?></strong>
-	</div>
+    <div class="row">
+        <div class="col-sm-6">
+            <p class="lead">
+                <ul>
+                    <li><strong>First</strong>, click <mark>"<i class="fas fa-cloud-download-alt"></i> Display Fish"</mark>.</li>
+                    <li><strong>Second</strong>, use your cursor to click points along the outline of the fish.</li>
+                    <li><strong>Last</strong>, click <mark>"<i class="fas fa-upload"></i> Crop Fish"</mark>.</li>
+                </ul>
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <div class="alert alert-warning" role="alert">
+                Currently removing the background for <strong><?php echo $current_image; ?></strong>
+            </div>
+        </div>
+    </div>
 
-	<button type="button" class="btn btn-lg btn-success" onClick="window.location.reload()">
-		<i class="fas fa-cloud-download-alt"></i> Load-In &amp; Set Current Fish
-	</button>
+    <div class="row justify-content-md-center">
+        <div class="col-sm-4">
+            <button type="button" class="btn btn-block btn-lg btn-success" onClick="window.location.reload()">
+                <i class="fas fa-cloud-download-alt"></i> Display Fish
+            </button>
+        </div>
+        <div class="col-sm-4">
+            <button type="button" id="crop" class="btn btn-block btn-lg btn-success">
+                <i class="fas fa-upload"></i> Crop Fish
+            </button>
+        </div>
+        <div class="col-sm-4">
+            <button type="button" class="btn btn-block btn-lg btn-danger" onClick="window.location.reload()">
+                <i class="fas fa-undo"></i> Try Again
+            </button>
+        </div>
+    </div>
 
-	<br /><br />
-
-	<!-- Buttons for triggering modals -->
-	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#instructionsModal">
-	  <i class="fas fa-ruler"></i> Fish BG Removal Instructions
-	</button>
-
-	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#schematicModal">
-	  <i class="fas fa-video"></i> Example BG Clipping Video
-	</button>
-
-	<button type="button" class="btn btn-danger" onClick="window.location.reload()">
-	  <i class="fas fa-undo"></i> Try Again
-	</button>
-
-	<!-- Subscaling Modal Instructions -->
-	<div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="instructionsModalTitle"><i class="fas fa-ruler"></i> Fish BG Removal Instructions</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-			(1) Use your mouse to click around the edges of the fish, <strong>while avoiding the background of the image</strong>.<br />
-			(2) Each point you make will serve to create a <strong>clipping mask</strong> around the fish image.<br /><br />
-			<em>Once you have made all the clicks around the edge of the fish, <strong>excluding the background of the fish image,</strong> Click <mark><strong>Execute Background Removal &amp; Upload <i class="fas fa-upload"></i></strong></mark> to continue.</em> 
-            <br /><br />Your goal is to have an image that looks like this:
-            <br /><br />
-            <img src="assets/img/demo-cut-fish.png" width="100%" height="100%" style="padding-bottom: 10px" />
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
-	<!-- SL Schematic Example Modal Instructions -->
-	<div class="modal fade" id="schematicModal" tabindex="-1" role="dialog">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="schematicModalTitle"><i class="fas fa-video"></i> Example BG Clipping Video</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-			<iframe width="100%" height="315" src="https://www.youtube.com/embed/WPxjkd4JkTA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
-	<!-- JS Below for Modal -->
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 
 	<p></p>
 	<div id="cropButton"></div>
@@ -268,11 +231,72 @@ $(document).ready(function() {
 	<div class="container">
 		<canvas id="fishCanvas" style="position: relative; margin-left: 0px; margin-top: 0px;"></canvas>
 	</div>
+	
+    <br />
 
-	<br />
-	<button type="button" id="crop" class="btn btn-success btn-lg">
-   		Execute Background Removal &amp; Upload <i class="fas fa-upload"></i>
-	</button>
+    <!-- Buttons for triggering modals -->
+    <div class="row justify-content-md-center">
+        <div class="col-sm-6">
+            <button type="button" class="btn btn-block btn-lg btn-warning" data-toggle="modal" data-target="#instructionsModal">
+              <i class="fas fa-ruler"></i> Instructions
+            </button>
+        </div>
+        <div class="col-sm-6">
+            <button type="button" class="btn btn-block btn-lg btn-info" data-toggle="modal" data-target="#schematicModal">
+                <i class="fas fa-video"></i> Example Video
+            </button>
+        </div>
+    </div>
+
+    <!-- Subscaling Modal Instructions -->
+    <div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="instructionsModalTitle"><i class="fas fa-ruler"></i> Fish BG Removal Instructions</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            (1) Use your mouse to click around the edges of the fish, <strong>while avoiding the background of the image</strong>.<br />
+            (2) Each point you make will serve to create a <strong>clipping mask</strong> around the fish image.<br /><br />
+            <em>Once you have made all the clicks around the edge of the fish, <strong>excluding the background of the fish image,</strong> Click <mark><strong>Execute Background Removal &amp; Upload <i class="fas fa-upload"></i></strong></mark> to continue.</em> 
+            <br /><br />Your goal is to have an image that looks like this:
+            <br /><br />
+            <img src="assets/img/demo-cut-fish.png" width="100%" height="100%" style="padding-bottom: 10px" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SL Schematic Example Modal Instructions -->
+    <div class="modal fade" id="schematicModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="schematicModalTitle"><i class="fas fa-video"></i> Example BG Clipping Video</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/WPxjkd4JkTA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS Below for Modal -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 
 	<!--<button type="submit" id="serverSendButton" class="btn btn-success btn-lg" disabled>
    		Send to Server <i class='fas fa-upload'></i>

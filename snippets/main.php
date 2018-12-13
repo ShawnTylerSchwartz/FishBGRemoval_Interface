@@ -26,4 +26,4 @@
     <main class="container">
    	 		<p></p>
    	 		<br /><br /><br />
-        <h2>Fish Background Removal Interface</h2>
+        <h2>Fish Image Clipping Interface</h2>
