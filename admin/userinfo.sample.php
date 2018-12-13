@@ -1,0 +1,1 @@
+<?php $userinfo = array('user'=>'pw'); ?>
