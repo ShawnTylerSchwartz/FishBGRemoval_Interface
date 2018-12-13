@@ -143,6 +143,10 @@ $(document).ready(function() {
 
             // $("#serverSendButton").prop('disabled', false);
             $("#crop").prop('disabled', true);
+            $("#dispFish").prop('disabled', true);
+
+            document.getElementById("successAlert").style.visibility = "visible";
+            document.getElementById("successAlert").style.display = "block";
 
             if (this.isOldIE) {
 
@@ -173,9 +177,7 @@ $(document).ready(function() {
                 if (xhr.status === 200) {
                     console.log(xhr.responseText);
                     $('#myimg').html('<img src="upload/' + xhr.responseText + '.png"/>');
-                    alert("Fish subsample has been successfully saved! Resetting interface...");
-                    close();
-                    window.open("fish_list.php?<?php echo SID; ?>");
+                    // window.open("fish_list.php?<?php echo SID; ?>");
                 }
             }
         }, 20);
@@ -201,9 +203,15 @@ $(document).ready(function() {
         </div>
     </div>
 
+    <div class="alert alert-success" id="successAlert" style="visibility: hidden; display: none;" role="alert">
+        <i class="fas fa-check"></i> Fish clipping without background successfully executed. 
+        <br />
+        <strong>If not satisified with output</strong>, please click <strong><i class="fas fa-undo"></i> Try Again</strong>.
+    </div>
+
     <div class="row justify-content-md-center">
         <div class="col-sm-4">
-            <button type="button" class="btn btn-block btn-lg btn-success" onClick="window.location.reload()">
+            <button type="button" id="dispFish" class="btn btn-block btn-lg btn-success" onClick="window.location.reload()">
                 <i class="fas fa-cloud-download-alt"></i> Display Fish
             </button>
         </div>
