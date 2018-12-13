@@ -196,6 +196,7 @@ $(document).ready(function() {
                 <ul>
                     <li><strong>First</strong>, click <mark>"<i class="fas fa-cloud-download-alt"></i> Display Fish"</mark>.</li>
                     <li><strong>Second</strong>, use your cursor to click points along the outline of the fish.</li>
+                    <li class="small"><strong>NOTE:</strong> Make your <strong>last point</strong> as close to the <strong>first point</strong> that you made. The program will automatically draw the line from your <strong>last point</strong> to your <strong>first point</strong> <em>(out of sight)</em>.</li>
                     <li><strong>Last</strong>, click <mark>"<i class="fas fa-upload"></i> Crop Fish"</mark>.</li>
                 </ul>
             </p>
