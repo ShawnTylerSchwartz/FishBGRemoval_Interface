@@ -69,9 +69,10 @@ $(document).ready(function() {
                 if (e.which == 1) {
                     var pointer = $('<span class="spot">').css({
                         'position': 'absolute',
-                        'background-color': '#000000',
-                        'width': '5px',
-                        'height': '5px',
+                        'background-color': '#f95f00',
+                        'border-radius': '7px',
+                        'width': '7px',
+                        'height': '7px',
                         'top': e.pageY,
                         'left': e.pageX
                     });
@@ -86,8 +87,11 @@ $(document).ready(function() {
                     var oldposy = $('#oldposy').html();
                     var posx = $('#posx').html();
                     var posy = $('#posy').html();
+
                     ctx.beginPath();
+                    ctx.lineWidth = "2";
                     ctx.moveTo(oldposx, oldposy);
+
                     if (oldposx != '') {
                         ctx.lineTo(posx, posy);
 
