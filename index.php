@@ -152,6 +152,4 @@
       <button class="btn btn-primary text-center" id="view-fullscreen" type="submit" name="submit" value="Submit">Launch Interface <i class="fas fa-rocket"></i></button>
     </form>
 
-<script src="assets/js/force_fullscreen.js"></script>
-
 <?php include 'snippets/footer.php'; ?>
