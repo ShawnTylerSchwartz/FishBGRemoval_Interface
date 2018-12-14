@@ -22,7 +22,7 @@
 ?>
 
 <!-- <h4>Welcome <?php echo $userEmail; ?>!</h4> -->
-<p class="lead">Here are some fish to <strong>rescale</strong> &amp; <strong>subsample:</strong>
+<p class="lead">Here are some fish images to <strong>clip from their backgrounds:</strong>
     <ul>
         <li>Please click each button to complete the process for each fish.</li>
         <li>When you're finished with one fish, you will be returned to this list.</li>
