@@ -207,7 +207,7 @@ $(document).ready(function() {
         </div>
         <div class="col-sm-6">
             <div class="alert alert-warning" role="alert">
-                Currently removing the background for <strong><?php echo $current_image; ?></strong>
+                Currently removing the background for <span class="small" style="word-wrap: break-word;"><strong><?php echo $current_image; ?></strong></span>
             </div>
         </div>
     </div>
