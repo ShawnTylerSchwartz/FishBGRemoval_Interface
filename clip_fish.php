@@ -80,6 +80,10 @@ $(document).ready(function() {
                     //store the points on mousedown
                     points.push(e.pageX, e.pageY);
 
+                    if (points.length > 5) {
+                        $("#crop").prop('disabled', false);
+                    }
+
                     console.log(points);
 
                     ctx.globalCompositeOperation = 'destination-out';
@@ -223,7 +227,7 @@ $(document).ready(function() {
             </button>
         </div>
         <div class="col-sm-4">
-            <button type="button" id="crop" class="btn btn-block btn-lg btn-success">
+            <button type="button" id="crop" class="btn btn-block btn-lg btn-success" disabled>
                 <i class="fas fa-upload"></i> Crop Fish
             </button>
         </div>
