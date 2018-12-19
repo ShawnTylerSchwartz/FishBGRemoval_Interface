@@ -46,5 +46,6 @@
  				echo "</span>";
  			echo "</li>";
  		echo "</a>";
+ 		echo "<div style='margin-bottom: 10px;'></div>";
  	}
  	echo "</ul>";
