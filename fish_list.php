@@ -15,7 +15,8 @@
 	$userLookupAddress = "_userLookup.html";
 
 	$fhstream = fopen($userLookupAddress, 'a'); 
-	$userLookupAddress=$userEmail .','. $seshID . ',' . $readableDate . '<hr />'; 
+	// $userLookupAddress=$userEmail .','. $seshID . ',' . $readableDate . '<hr />'; 
+    $userLookupAddress=$seshID . ',' . $readableDate . '<hr />'; 
 	fwrite($fhstream,$userLookupAddress); // Write information to the file
 	fclose($fhstream); // Close the file 
 
