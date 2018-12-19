@@ -63,7 +63,7 @@
         foreach ($assignedFishFiles as $image) {
 
             if (in_array($image, $tmpstorage)) {
-                echo "<div class='list-group'>";
+                echo "<div class='list-group' style='display: none; visibility: hidden;'>";
                     echo "<a href='clip_fish.php?image=" . $image . '&' . SID . "' class='list-group-item list-group-item-action list-group-item-success'>" . $image . "</a><div style='margin-bottom: 10px;'></div></li>";
                 echo "</div>";
                     $numCompleted++;
