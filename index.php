@@ -5,7 +5,7 @@
 	include 'snippets/main.php';
 ?>
 
-<p class="lead">Please enter your email below to get started.</p>
+<p class="lead">Please enter your <strong>email</strong> or a <strong>unique identifier</strong> below to get started.</p>
 
  <!-- <form class="form-signin text-center" name="login" action="fish_list.php?" method="post"> -->
 
@@ -147,7 +147,7 @@
 
  	<?php echo '<form class="form-signin text-center" name="login" action="fish_list.php?' . SID . '" method="post">'; ?>
       <label for="inputEmail" class="sr-only">Username</label>
-      <input type="email" id="inputUsername" name="emailaddress" class="form-control" placeholder="Email Address" required autofocus>
+      <input type="text" id="inputUsername" name="emailaddress" class="form-control" placeholder="Email Address or Unique Identifier" required autofocus>
       <p></p>
       <button class="btn btn-primary text-center" id="view-fullscreen" type="submit" name="submit" value="Submit">Launch Interface <i class="fas fa-rocket"></i></button>
     </form>
