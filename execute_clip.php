@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     $seshID = session_id();
 
     $date   = new DateTime();
@@ -37,7 +39,7 @@ if($_POST) {
 
     if(!file_exists($nameimg)) {
         $fh = fopen($txt, 'a'); 
-        $txt=$cur_img.','.$name . ',' . $seshID . ',' . $readableDate . '<hr />'; 
+        $txt = $cur_img . ',' . $name . ',' . $readableDate . ',' . $seshID . '<hr />'; 
         fwrite($fh,$txt); // Write information to the file
         fclose($fh); // Close the file
     }

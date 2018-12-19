@@ -175,7 +175,7 @@ $(document).ready(function() {
                 //upload to server (if needed)
                 var xhr = new XMLHttpRequest();
                 // // 
-                xhr.open('POST', 'execute_clip.php?image=<?php echo $current_image; ?>', false);
+                xhr.open('POST', 'execute_clip.php?image=<?php echo $current_image; ?>&SID', false);
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 var files = dataurl;
                 var data = new FormData();
