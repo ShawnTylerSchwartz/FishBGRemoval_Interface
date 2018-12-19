@@ -157,7 +157,7 @@
     <div class="alert alert-info" role="alert">
   		<i class="fas fa-info-circle"></i> This login information will only be used to identify which images were processed by the same person in statistical analyses.
   		<br /><br />
-  		If you are a returning participant, you should use the same identifier each time.
+  		If you are a returning participant, you should use the same identifier each time. <strong>Your email address or chosen unique identifier will not be stored</strong>.
   		<br /><br />
 		For any questions regarding the interface, please email <strong>shawnschwartz@ucla.edu</strong> with the subject line [Fish Interface]. Thank you.
 	</div>
