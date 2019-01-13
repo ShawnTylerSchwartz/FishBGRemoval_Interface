@@ -17,10 +17,12 @@ if($_POST) {
     $cur_img = $_GET['image'];
 
     $nospace = explode(" ", $cur_img);
+    $noext = explode(".", $nospace[1]);
     $noslash = explode("/", $nospace[0]);
+    $sepgenus = explode("_", $noslash[2]);
     $exportPath = "fish_output/" . $noslash[1] . "/";  
     // $name = md5($file) . ".jpg";
-    $name = $noslash[2] . "_" . $nospace[1];
+    $name = $noslash[1] . "_" . $sepgenus[1] . "_" . $noext[0];
 
     if(!is_dir($exportPath)) {
         mkdir($exportPath);
