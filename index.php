@@ -5,6 +5,17 @@
 	include 'snippets/main.php';
 ?>
 
+<div class="alert alert-success" role="alert">
+  <strong>UPDATES: Sunday, January 13, 2019</strong>
+  	<br /><br />
+  	1) The distribution of fish images has now been more streamlined for your convenience. You will no longer need to return to a list of fish after each background is removed. <br />Instead, after you click <mark><strong><i class="fas fa-upload"></i> Crop Fish</strong></mark>, the <mark><strong>Ready? Next Fish <i class="fas fa-forward"></i></strong></mark> button will take you directly to the next fish image. A preview of the next fish will accompany this button as well.
+  	<br /><br />
+  	2) Fish images are now automatically preloaded into the background removal interface. Therefore, the <mark><strong style="text-decoration: line-through;"><i class="fas fa-cloud-download-alt"></i> Display Fish</strong></mark> has been replaced <br />with <mark><strong><i class="fas fa-exclamation-circle"></i> No Fish? Reload.</strong></mark> in the event of a display error.
+  	<br /><br />
+  	&dash; Shawn Schwartz
+  	<br />[Please email <strong>shawnschwartz@ucla.edu</strong> for any bugs/issues. Thank you.]
+</div>
+
 <p class="lead">Please enter your <strong>email</strong> or a <strong>unique identifier</strong> below to get started.</p>
 
  <!-- <form class="form-signin text-center" name="login" action="fish_list.php?" method="post"> -->
@@ -99,51 +110,9 @@
  	}
 ?>
 
-<?php
-	function ListFiles($dir) {
-	    if($dh = opendir($dir)) {
-	        $files = Array();
-	        $inner_files = Array();
-	        while($file = readdir($dh)) {
-	            if($file != "." && $file != ".." && $file[0] != '.') {
-	                if(is_dir($dir . "/" . $file)) {
-	                    $inner_files = ListFiles($dir . "/" . $file);
-	                    if(is_array($inner_files)) $files = array_merge($files, $inner_files); 
-	                } else {
-	                    array_push($files, $dir . "/" . $file);
-	                }
-	            }
-	        }
-	        closedir($dh);
-	        shuffle($files);
-
-	        return $files;
-	    }
-	}
-
-	// $remainingFish: To be used for random session assignment to users
-	$allFish = ListFiles('fish_input');
-	$completedFish = $tmpstorage;
-	$remainingFish = array_merge(array_diff($allFish, $completedFish), array_diff($completedFish, $allFish));
-
-	$selectedFish = array_slice($remainingFish, 0, 10);
 
 
-	/*foreach (ListFiles('fish_input') as $key=>$file){
-	    echo '<pre>'; print_r($file); echo '</pre>';
-	}*/
-?>
 
-<?php
-	// Initialize the array
-	$files = array();
-
-	$files = $selectedFish;
-	$_SESSION['FISHFILES'] = $files;
-
-	// echo session_id();
-	// echo '<a href="test.php?' . SID . '" target="_blank">test page</a>';
-?>
 
  	<?php echo '<form class="form-signin text-center" name="login" action="fish_list.php?' . SID . '" method="post">'; ?>
       <label for="inputEmail" class="sr-only">Username</label>

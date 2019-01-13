@@ -5,6 +5,7 @@
 	include 'snippets/main.php';
 
 	$current_image = $_GET['image'];
+
 ?>
 
 <script>
@@ -198,14 +199,16 @@ $(document).ready(function() {
         <div class="col-sm-6">
             <p class="lead">
                 <ul>
-                    <li><strong>First</strong>, click <mark>"<i class="fas fa-cloud-download-alt"></i> Display Fish"</mark>.</li>
-                    <li><strong>Second</strong>, use your cursor to click points along the outline of the fish.</li>
+                    <!-- <li><strong>First</strong>, click <mark>"<i class="fas fa-cloud-download-alt"></i> Display Fish"</mark>.</li> -->
+                    <li><strong>First</strong>, use your cursor to click points along the outline of the fish.</li>
                     <li class="small"><strong>NOTE:</strong> Make your <strong>last point</strong> as close to the <strong>first point</strong> that you made. The program will automatically draw the line from your <strong>last point</strong> to your <strong>first point</strong> <em>(out of sight)</em>.</li>
                     <li><strong>Last</strong>, click <mark>"<i class="fas fa-upload"></i> Crop Fish"</mark>.</li>
+                    <li>If no fish is showing, click <br /><mark>"<i class="fas fa-exclamation-circle"></i> No Fish? Reload."</mark>.</li>
                 </ul>
             </p>
         </div>
         <div class="col-sm-6">
+            <div style="margin-bottom: 20px;"></div>
             <div class="alert alert-warning" role="alert">
                 Currently removing the background for <span class="small" style="word-wrap: break-word;"><strong><?php echo $current_image; ?></strong></span>
             </div>
@@ -217,13 +220,119 @@ $(document).ready(function() {
         <br />
         <strong>If not satisified with output</strong>, please click <strong><i class="fas fa-undo"></i> Try Again</strong>.
         <p></p>
-        <button type="button" class="btn btn-dark" onClick="window.location.assign('fish_list.php?<?php echo SID; ?>')">Ready? Next Fish <i class="fas fa-forward"></i></button>
+        <!-- <button type="button" class="btn btn-dark" onClick="window.location.assign('fish_list.php?<?php echo SID; ?>')">Ready? Next Fish <i class="fas fa-forward"></i></button> -->
+        <?php
+
+        $directory = $_GET['dir'];
+     
+        //get all image files with a .jpg extension.
+        $images = glob($directory . "*.jpg");
+
+        $block = 1024*1024; //1MB for file read in
+        $tmpstorage = array();
+        if ($fh = fopen("_outputData.html", "r")) { 
+            $left='';
+            while (!feof($fh)) { // read in file
+                $temp = fread($fh, $block);  
+                $fgetslines = explode("<hr />",$temp);
+                $fgetslines[0]=$left.$fgetslines[0];
+                if(!feof($fh) )$left = array_pop($lines);           
+                foreach ($fgetslines as $k => $line) {
+                    $completedComponents = explode(",", $line);
+                    array_push($tmpstorage, $completedComponents[0]);
+                }
+            }   
+        }
+
+        fclose($fh); // close file stream
+
+        function ListFiles($dir) {
+        if($dh = opendir($dir)) {
+            $files = Array();
+            $inner_files = Array();
+            while($file = readdir($dh)) {
+                if($file != "." && $file != ".." && $file[0] != '.') {
+                    if(is_dir($dir . "/" . $file)) {
+                        $inner_files = ListFiles($dir . "/" . $file);
+                        if(is_array($inner_files)) $files = array_merge($files, $inner_files); 
+                    } else {
+                        array_push($files, $dir . "/" . $file);
+                    }
+                }
+            }
+            closedir($dh);
+            shuffle($files);
+
+            return $files;
+        }
+    }
+
+    // $remainingFish: To be used for random session assignment to users
+    $allFish = ListFiles('fish_input');
+    //print_r($allFish);
+    $completedFish = $tmpstorage;
+    $remainingFish = array_merge(array_diff($allFish, $completedFish), array_diff($completedFish, $allFish));
+
+    $selectedFish = array_slice($remainingFish, 0, 10);
+
+    //print_r($selectedFish);
+    //print($selectedFish[1]);
+    //print($current_image);
+
+    // Initialize the array
+    $files = array();
+
+    $files = $selectedFish;
+    $_SESSION['FISHFILES'] = $files;
+
+    $assignedFishFiles = $_SESSION['FISHFILES'];
+
+   // print_r($assignedFishFiles);
+
+    /*
+    function checkIfSameFish($assignedFish, $curFish) {
+        $newFishReplacement = $assignedFishFiles[0];
+        echo $newFishReplacement;
+        if ($assignedFish == $curFish) {
+            echo "<strong>ERROR MATCHING FISH</strong>";
+            print($newFishReplacement);
+            return $newFishReplacement;
+        } else {
+            echo "<strong>Everythting loks good</strong>";
+        }
+    }
+
+    checkIfSameFish($assignedFishFiles[1], $current_image);*/
+
+    if ($assignedFishFiles[1] == $current_image) {
+        $assignedFishFiles[1] = $assignedFishFiles[0];
+    }
+
+    //print_r($assignedFishFiles);
+
+        echo "<div class='container'>";
+        echo "<div class='row'>";
+            echo "<div class='col-sm-4'>";
+                echo "<div class='card text-center' style='width: 18rem;'>";
+                    echo "<img class='card-img-top' src='" . $assignedFishFiles[1] . "'>";
+                    echo "<div class='card-body'>";
+                        echo "<a href='clip_fish.php?image=" . $assignedFishFiles[1] . '&' . SID . "' class='btn btn-dark'>Ready? Next Fish <i class='fas fa-forward'></i></a>";
+                        ?>
+                        <!-- <button type="button" class="btn btn-dark" onClick="window.location.assign('clip_fish.php?<?php echo SID; ?>')">Ready? Next Fish <i class="fas fa-forward"></i></button> -->
+                        <?php
+                        echo "</div>";
+                    echo "</div>";
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+        ?>
+
     </div>
 
     <div class="row justify-content-md-center">
         <div class="col-sm-4">
-            <button type="button" id="dispFish" class="btn btn-block btn-lg btn-success" onClick="window.location.reload()">
-                <i class="fas fa-cloud-download-alt"></i> Display Fish
+            <button type="button" id="dispFish" class="btn btn-block btn-lg btn-warning" onClick="window.location.reload()">
+                <!-- <i class="fas fa-cloud-download-alt"></i> --> <i class="fas fa-exclamation-circle"></i> No Fish? Reload.
             </button>
         </div>
         <div class="col-sm-4">
